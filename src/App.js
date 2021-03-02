@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Layout from './components/Layout/Layout';
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import Checkout from './containers/Checkout/Checkout';
+import Orders from './containers/Orders/Orders';
+
+
+class App extends Component {
+  state = {
+    inCheckout : false
+  }
+  render(){
+    return (
+      <BrowserRouter>
+      <div>
+        <Layout>
+          <Route path="/orders" component={Orders} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/" exact component={BurgerBuilder} />
+        </Layout>
+      </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
